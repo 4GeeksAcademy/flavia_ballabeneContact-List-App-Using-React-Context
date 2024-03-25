@@ -44,7 +44,6 @@
 
 import React, { useState, useEffect, useContext } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-
 import { Context } from "../store/appContext";
 
 export const AddContact = () => {
@@ -71,17 +70,29 @@ export const AddContact = () => {
 
         navigate("/");
     };
-// need to refetch to see updated page?
+// (?)need to refresh to see updated page
     return (
-        <div>
-            <h2>Add New Contact</h2>
+        <div style={{ width: '50rem' }}>
+            <h2 className="d-flex justify-content-center">Add New Contact</h2>
             <form onSubmit={handleSubmit}>
-                <input type="text" value={fullName} onChange={(e) => setFullName(e.target.value)} placeholder="Full Name" />
-                <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email" />
-                <input type="tel" value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="Phone" />
-                <input type="text" value={address} onChange={(e) => setAddress(e.target.value)} placeholder="Address" />
-                <button type="submit">Save</button>
-                {/* link above do not fetch */}
+            <div className="mb-3 d-flex flex-wrap">
+            <label for="fullName" className="form-label">Full Name</label>
+                <input className="form-control" type="text" value={fullName} onChange={(e) => setFullName(e.target.value)} required placeholder="Enter Full Name" />
+            </div>
+            <div className="mb-3">
+            <label for="email" className="form-label">Email</label>
+                <input className="form-control" type="email" value={email} onChange={(e) => setEmail(e.target.value)} required placeholder="Enter Email" />
+            </div>
+            <div className="mb-3">
+            <label for="phone" className="form-label">Phone</label>
+                <input className="form-control" type="tel" value={phone} onChange={(e) => setPhone(e.target.value)} required placeholder="Enter Phone" />
+            </div>
+            <div className="mb-3">
+            <label for="address" className="form-label">Address</label>
+                <input className="form-control" type="text" value={address} onChange={(e) => setAddress(e.target.value)} required placeholder="Enter Address" />
+            </div>
+                <button type="submit" className="btn btn-primary" style={{ width: '50rem' }}>Save</button>
+                {/* (?)link above do not fetch */}
             </form>
             <Link to="/">
  				or get back to contacts
