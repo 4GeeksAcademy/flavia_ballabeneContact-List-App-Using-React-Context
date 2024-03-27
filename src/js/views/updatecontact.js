@@ -28,17 +28,20 @@
 
 import React, { useState, useEffect, useContext } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-
 import { Context } from "../store/appContext";
 
 export const UpdateContact = () => {
     const { id } = useParams();
-    const { actions } = useContext(Context);
+    const { store, actions } = useContext(Context);
     const navigate = useNavigate();
     const [fullName, setFullName] = useState("");
     const [email, setEmail] = useState("");
     const [phone, setPhone] = useState("");
     const [address, setAddress] = useState("");
+  
+    useEffect(() => {
+        actions.fetchOneContact(id);
+    }, []);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -58,28 +61,28 @@ export const UpdateContact = () => {
     };
 // do not update the list
     return (
-        <div style={{ width: '50rem' }}>
+        <div style={{ width: '50rem', marginTop: '2rem' }}>
             <h2 className="d-flex justify-content-center">Update Contact</h2>
             <form onSubmit={handleSubmit}>
             <div className="mb-3 d-flex flex-wrap">
             <label for="fullName" className="form-label">Full Name</label>
-                <input className="form-control" type="text" value={fullName} onChange={(e) => setFullName(e.target.value)} placeholder="Full Name" />
+                <input className="form-control" type="text" value={fullName} onChange={(e) => setFullName(e.target.value)} placeholder={store.contacts.full_name} />
             </div>
             <div className="mb-3">
             <label for="email" className="form-label">Email</label>
-                <input className="form-control" type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email" />
+                <input className="form-control" type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder={store.contacts.email} />
             </div>
             <div className="mb-3">
             <label for="phone" className="form-label">Phone</label>
-                <input className="form-control" type="tel" value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="Phone" />
+                <input className="form-control" type="tel" value={phone} onChange={(e) => setPhone(e.target.value)} placeholder={store.contacts.phone} />
              </div>
              <div className="mb-3">
             <label for="address" className="form-label">Address</label>
-                <input className="form-control" type="text" value={address} onChange={(e) => setAddress(e.target.value)} placeholder="Address" />
+                <input className="form-control" type="text" value={address} onChange={(e) => setAddress(e.target.value)} placeholder={store.contacts.address} />
             </div>
                 <button type="submit" className="btn btn-primary" style={{ width: '50rem' }}>Save</button>
             </form>
-            <Link to="/">Back to Contacts</Link>
+            <Link to="/">or get back to contacts</Link>
 
         </div>
     );

@@ -61,6 +61,16 @@ const getState = ({ getStore, getActions, setStore }) => {
                     console.log("Error fetching contacts:", error);
                 }
             },
+            fetchOneContact: async (contactId) => {
+                try {
+                    const response = await fetch(`https://playground.4geeks.com/apis/fake/contact/${contactId}`);
+                    const data = await response.json();
+                    setStore({ contacts: data });
+                    // getActions().fetchContacts();
+                } catch (error) {
+                    console.log("Error fetching contacts:", error);
+                }
+            },
             addContact: async (newContact) => {
                 try {
                     const response = await fetch("https://playground.4geeks.com/apis/fake/contact/", {
@@ -76,11 +86,9 @@ const getState = ({ getStore, getActions, setStore }) => {
                             phone: newContact.phone
                         })
                     });
-                    if (!response.ok) {
-                        throw new Error(response.statusText);
-                    }
+                    
                     const data = await response.json();
-                    setStore({ contacts: [...getStore().contacts, data] });
+                    getActions().fetchContacts();
                 } catch (error) {
                     console.log("Error adding contact:", error);
                 }
@@ -90,9 +98,6 @@ const getState = ({ getStore, getActions, setStore }) => {
                     const response = await fetch(`https://playground.4geeks.com/apis/fake/contact/${contactId}`, {
                         method: "DELETE"
                     });
-                    if (!response.ok) {
-                        throw new Error(response.statusText);
-                    }
                     setStore({ contacts: getStore().contacts.filter(contact => contact.id !== contactId) });
                 } catch (error) {
                     console.log("Error deleting contact:", error);
@@ -114,10 +119,7 @@ const getState = ({ getStore, getActions, setStore }) => {
                         })
                     });
                     
-                    if (!response.ok) {
-                        throw new Error(response.statusText);
-                    }
-                    actions.fetchContacts();
+                    getActions().fetchContacts();
                 } catch (error) {
                     console.log("Error updating contact:", error);
                 }

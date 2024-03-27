@@ -72,7 +72,7 @@ export const AddContact = () => {
     };
 // (?)need to refresh to see updated page
     return (
-        <div style={{ width: '50rem' }}>
+        <div style={{ width: '50rem', marginTop: '2rem' }}>
             <h2 className="d-flex justify-content-center">Add New Contact</h2>
             <form onSubmit={handleSubmit}>
             <div className="mb-3 d-flex flex-wrap">
