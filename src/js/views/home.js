@@ -49,11 +49,11 @@ export const Home = () => {
     return (
         <div>
             <ol>
-                {store.contacts.map((contact) => (
+                {Array.isArray(store.contacts) && store.contacts.map((contact) => (
                     <li className="list-group-item border border-secondary-subtle d-flex align-items-center" key={contact.id}>
                         <img src={CV} className="rounded-circle w-25 h-25 p-5" />
                         <div className="ms-2 me-auto">
-                        <div className="mb-3 fw-bold">{contact.full_name}</div>
+                        <div className="mb-3 fw-bold">{contact.name}</div>
                         <div className="mb-3"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-envelope me-2" viewBox="0 0 16 16">
   <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1zm13 2.383-4.708 2.825L15 11.105zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741M1 11.105l4.708-2.897L1 5.383z"/>
 </svg> {contact.email}</div>
@@ -78,7 +78,7 @@ export const Home = () => {
                         {/* <Link to="/contact/:contactId"> Edit */}
                 {/* <button onClick={(UpdateContact) => actions.updateContact(contact.id)}>Edit</button> */}
                 {/* </Link> */}
-                        {/* <button onClick={() => actions.deleteContact(contact.id)}>Delete</button> */}
+                        {/* <button onClick={() => actions.deleteContact(contact.id)}>Delete</button> DELETE CLICK */}
                         <svg onClick={() => openModal(contact.id)} xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" className="bi bi-trash3" viewBox="0 0 16 16">
   <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5M11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47M8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5"/>
 </svg></span>

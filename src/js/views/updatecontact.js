@@ -34,7 +34,7 @@ export const UpdateContact = () => {
     const { id } = useParams();
     const { store, actions } = useContext(Context);
     const navigate = useNavigate();
-    const [fullName, setFullName] = useState("");
+    const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [phone, setPhone] = useState("");
     const [address, setAddress] = useState("");
@@ -46,13 +46,13 @@ export const UpdateContact = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         const contact = {
-            fullName,
+            name,
             email,
             phone,
             address
         };
         actions.updateContact(id, contact);
-        setFullName("");
+        setName("");
         setEmail("");
         setPhone("");
         setAddress("");
@@ -65,8 +65,8 @@ export const UpdateContact = () => {
             <h2 className="d-flex justify-content-center">Update Contact</h2>
             <form onSubmit={handleSubmit}>
             <div className="mb-3 d-flex flex-wrap">
-            <label for="fullName" className="form-label">Full Name</label>
-                <input className="form-control" type="text" value={fullName} onChange={(e) => setFullName(e.target.value)} placeholder={store.contacts.full_name} />
+            <label for="name" className="form-label">Full Name</label>
+                <input className="form-control" type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder={store.contacts.name} />
             </div>
             <div className="mb-3">
             <label for="email" className="form-label">Email</label>

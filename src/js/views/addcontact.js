@@ -49,7 +49,7 @@ import { Context } from "../store/appContext";
 export const AddContact = () => {
     const { store, actions } = useContext(Context);
     const navigate = useNavigate();
-    const [fullName, setFullName] = useState("");
+    const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [phone, setPhone] = useState("");
     const [address, setAddress] = useState("");
@@ -57,13 +57,13 @@ export const AddContact = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         const newContact = {
-            fullName,
+            name,
             email,
             phone,
             address
         };
         actions.addContact(newContact);
-        setFullName("");
+        setName("");
         setEmail("");
         setPhone("");
         setAddress("");
@@ -76,8 +76,8 @@ export const AddContact = () => {
             <h2 className="d-flex justify-content-center">Add New Contact</h2>
             <form onSubmit={handleSubmit}>
             <div className="mb-3 d-flex flex-wrap">
-            <label for="fullName" className="form-label">Full Name</label>
-                <input className="form-control" type="text" value={fullName} onChange={(e) => setFullName(e.target.value)} required placeholder="Enter Full Name" />
+            <label for="name" className="form-label">Full Name</label>
+                <input className="form-control" type="text" value={name} onChange={(e) => setName(e.target.value)} required placeholder="Enter Full Name" />
             </div>
             <div className="mb-3">
             <label for="email" className="form-label">Email</label>

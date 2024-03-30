@@ -54,18 +54,18 @@ const getState = ({ getStore, getActions, setStore }) => {
             // Define actions here
             fetchContacts: async () => {
                 try {
-                    const response = await fetch("https://playground.4geeks.com/apis/fake/contact/agenda/flavia_agenda");
+                    const response = await fetch("https://playground.4geeks.com/contact/agendas/flavia-agenda");
                     const data = await response.json();
-                    setStore({ contacts: data });
+                    setStore({ contacts: data.contacts });
                 } catch (error) {
                     console.log("Error fetching contacts:", error);
                 }
             },
             fetchOneContact: async (contactId) => {
                 try {
-                    const response = await fetch(`https://playground.4geeks.com/apis/fake/contact/${contactId}`);
+                    const response = await fetch(`https://playground.4geeks.com/contact/agendas/flavia-agenda/contacts`);
                     const data = await response.json();
-                    setStore({ contacts: data });
+                    setStore({ contacts: data.contacts });
                     // getActions().fetchContacts();
                 } catch (error) {
                     console.log("Error fetching contacts:", error);
@@ -73,15 +73,15 @@ const getState = ({ getStore, getActions, setStore }) => {
             },
             addContact: async (newContact) => {
                 try {
-                    const response = await fetch("https://playground.4geeks.com/apis/fake/contact/", {
+                    const response = await fetch("https://playground.4geeks.com/contact/agendas/flavia-agenda/contacts/", {
                         method: "POST",
                         headers: {
                             "Content-Type": "application/json"
                         },
                         body: JSON.stringify({
-                            full_name: newContact.fullName,
+                            name: newContact.name,
                             email: newContact.email,
-                            agenda_slug: "flavia_agenda",
+                            // agenda_slug: "flavia-agenda",
                             address: newContact.address,
                             phone: newContact.phone
                         })
@@ -95,7 +95,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             },
             deleteContact: async (contactId) => {
                 try {
-                    const response = await fetch(`https://playground.4geeks.com/apis/fake/contact/${contactId}`, {
+                    const response = await fetch(`https://playground.4geeks.com/contact/agendas/flavia-agenda/contacts/${contactId}`, {
                         method: "DELETE"
                     });
                     setStore({ contacts: getStore().contacts.filter(contact => contact.id !== contactId) });
@@ -105,15 +105,15 @@ const getState = ({ getStore, getActions, setStore }) => {
             },
             updateContact: async (contactId, contact) => {
                 try {
-                    const response = await fetch(`https://playground.4geeks.com/apis/fake/contact/${contactId}`, {
+                    const response = await fetch(`https://playground.4geeks.com/contact/agendas/flavia-agenda/contacts/${contactId}`, {
                         method: "PUT",
                         headers: {
                             "Content-Type": "application/json"
                         },
                         body: JSON.stringify({
-                            full_name: contact.fullName,
+                            name: contact.name,
                             email: contact.email,
-                            agenda_slug: "flavia_agenda",
+                            agenda_slug: "flavia-agenda",
                             address: contact.address,
                             phone: contact.phone
                         })
