@@ -70,7 +70,6 @@ export const AddContact = () => {
 
         navigate("/");
     };
-// (?)need to refresh to see updated page
     return (
         <div style={{ width: '50rem', marginTop: '2rem' }}>
             <h2 className="d-flex justify-content-center">Add New Contact</h2>
