@@ -38,10 +38,18 @@ export const UpdateContact = () => {
     const [email, setEmail] = useState("");
     const [phone, setPhone] = useState("");
     const [address, setAddress] = useState("");
-  
+
+    const findSingleContact = (id) => {
+        const contact = store.contacts.find((element) => element["id"] == id);
+        setName(contact.name);
+        setEmail(contact.email);
+        setPhone(contact.phone);
+        setAddress(contact.address);
+    }
+
     useEffect(() => {
-        actions.fetchOneContact(id);
-    }, []);
+        findSingleContact(id);
+        }, []);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -59,26 +67,26 @@ export const UpdateContact = () => {
 
         navigate("/");
     };
-console.log("***",id)
+
     return (
         <div style={{ width: '50rem', marginTop: '2rem' }}>
             <h2 className="d-flex justify-content-center">Update Contact</h2>
             <form onSubmit={handleSubmit}>
             <div className="mb-3 d-flex flex-wrap">
             <label for="name" className="form-label">Full Name</label>
-                <input className="form-control" type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder={store.contacts.name} />
+                <input className="form-control" type="text" value={name} onChange={(e) => setName(e.target.value)} />
             </div>
             <div className="mb-3">
             <label for="email" className="form-label">Email</label>
-                <input className="form-control" type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder={store.contacts.email} />
+                <input className="form-control" type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
             </div>
             <div className="mb-3">
             <label for="phone" className="form-label">Phone</label>
-                <input className="form-control" type="tel" value={phone} onChange={(e) => setPhone(e.target.value)} placeholder={store.contacts.phone} />
+                <input className="form-control" type="tel" value={phone} onChange={(e) => setPhone(e.target.value)} />
              </div>
              <div className="mb-3">
             <label for="address" className="form-label">Address</label>
-                <input className="form-control" type="text" value={address} onChange={(e) => setAddress(e.target.value)} placeholder={store.contacts.address} />
+                <input className="form-control" type="text" value={address} onChange={(e) => setAddress(e.target.value)} />
             </div>
                 <button type="submit" className="btn btn-primary" style={{ width: '50rem' }}>Save</button>
             </form>

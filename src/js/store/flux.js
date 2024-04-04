@@ -61,16 +61,16 @@ const getState = ({ getStore, getActions, setStore }) => {
                     console.log("Error fetching contacts:", error);
                 }
             },
-            fetchOneContact: async (contactId) => {
-                try {
-                    const response = await fetch(`https://playground.4geeks.com/contact/agendas/flavia-agenda/contacts`);
-                    const data = await response.json();
-                    setStore({ contacts: data.contacts });
-                    // getActions().fetchContacts();
-                } catch (error) {
-                    console.log("Error fetching contacts:", error);
-                }
-            },
+            // fetchOneContact: async (contactId) => {
+            //     try {
+            //         const response = await fetch(`https://playground.4geeks.com/contact/agendas/flavia-agenda/contacts`);
+            //         const data = await response.json();
+            //         setStore({ contacts: data.contacts });
+            //         // getActions().fetchContacts();
+            //     } catch (error) {
+            //         console.log("Error fetching contacts:", error);
+            //     }
+            // },
             addContact: async (newContact) => {
                 try {
                     const response = await fetch("https://playground.4geeks.com/contact/agendas/flavia-agenda/contacts/", {
